@@ -27,7 +27,7 @@ jobs:
       - name: Package Binaries
         run: |
           ls ./
-          sl ./bin/
+          ls ./bin/
           tar -czvf binaries.tar.gz ./bin
 
       - name: Checkout Repo B
