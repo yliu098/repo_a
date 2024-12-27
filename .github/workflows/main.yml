@@ -32,6 +32,7 @@ jobs:
       - name: Clone Repo B
         run: |
           # 使用 token 克隆 Repo B
+          cd ..
           git clone https://github.com/yliu098/repo_b.git
           cd repo_b
           # 使用 token 设置认证 URL 来支持私有仓库
@@ -39,7 +40,6 @@ jobs:
 
       - name: Upload Binaries to Repo B
         run: |
-          ls ./
           ls ../
           # 在 Repo B 中创建 'binaries' 目录并移动文件
           mkdir -p binaries
