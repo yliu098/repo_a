@@ -30,7 +30,7 @@ jobs:
         uses: actions/checkout@v3
         with:
           repository: yliu098/repo_b
-          token: ${{ secrets.test_token }}  # 使用个人 token 作为认证
+          token: ${{ secrets.test_token }}
 
       - name: Upload Binaries to Repo B
         run: |
