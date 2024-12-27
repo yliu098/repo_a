@@ -25,7 +25,7 @@ jobs:
            ./build.sh
 
       - name: Package Binaries
-          run: |
+        run: |
             # 打印当前目录，确认文件结构
             ls ./  
             # 打印 bin 目录的内容，确保正确的文件存在
