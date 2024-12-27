@@ -25,16 +25,18 @@ jobs:
            ./build.sh
 
       - name: Package Binaries
-        run: |
-          ls ./  # 打印当前目录文件
-          tar -czvf binaries.tar.gz ./bin  # 压缩生成的二进制文件
-          ls ./bin/  # 列出 bin 目录中的文件
+          run: |
+            # 打印当前目录，确认文件结构
+            ls ./  
+            # 打印 bin 目录的内容，确保正确的文件存在
+            ls ./bin/  
+            # 使用 tar 压缩 ./bin 目录中的文件，并显示输出
+            tar -czvf binaries.tar.gz -C ./bin .  # 使用 -C 选项进入 bin 目录
+            # 打印压缩文件生成后，确认 binaries.tar.gz 的存在
+            ls -lh binaries.tar.gz
 
-      - name: Clone Repo B
-        run: |
-          # 克隆 Repo B 代码库
-          git clone https://github.com/yliu098/repo_b.git
-          cd repo_b
+
+
 
       - name: Checkout Repo B (with token)
         uses: actions/checkout@v3
@@ -44,6 +46,8 @@ jobs:
 
       - name: Upload Binaries to Repo B
         run: |
+          ls ./
+          ls ../
           # 在 Repo B 中创建 'binaries' 目录并移动文件
           mkdir -p binaries
           mv ../bin/* binaries/  # 将 Repo A 生成的二进制文件移动到 Repo B
