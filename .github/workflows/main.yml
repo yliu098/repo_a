@@ -37,6 +37,7 @@ jobs:
 
       - name: Clone Repo B
         run: |
+          cd ..
           # 克隆 Repo B 代码库
           git clone https://github.com/yliu098/repo_b.git
           cd repo_b
@@ -53,7 +54,7 @@ jobs:
           ls ../
           # 在 Repo B 中创建 'binaries' 目录并移动文件
           mkdir -p binaries
-          mv ../bin/binaries.tar.gz binaries/  # 将 Repo A 生成的二进制文件移动到 Repo B
+          mv ../repo_a/bin/binaries.tar.gz binaries/  # 将 Repo A 生成的二进制文件移动到 Repo B
 
           # 配置 Git 用户信息
           git config user.name "github-actions"
