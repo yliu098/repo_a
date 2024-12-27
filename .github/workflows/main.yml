@@ -8,6 +8,8 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    environment:
+        name: personal_token
 
     steps:
       - name: Checkout Source Code
