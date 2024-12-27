@@ -20,23 +20,29 @@ jobs:
 
       - name: Build Binaries
         run: |
-           chmod +x build.sh
            ./build.sh
 
       - name: Package Binaries
         run: |
           tar -czvf binaries.tar.gz ./bin
 
-      - name: Push to Repo B
+      - name: Checkout Repo B
         uses: actions/checkout@v3
         with:
           repository: yliu098/repo_b
-          token:  ${{ secrets.test_token }}
-      
+          token: ${{ secrets.test_token }}  # 使用个人 token 作为认证
+
       - name: Upload Binaries to Repo B
         run: |
+          # 确保 Repo B 中存在 binaries 目录
           mkdir -p binaries
           mv binaries.tar.gz binaries/
+
+          # 配置 git 用户信息
+          git config user.name "github-actions"
+          git config user.email "github-actions@github.com"
+
+          # 添加并提交更改
           git add binaries/
           git commit -m "Add new binaries from Repo A"
           git push
