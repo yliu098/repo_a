@@ -27,6 +27,7 @@ jobs:
       - name: Package Binaries
         run: |
           ls ./
+          sl ./bin/
           tar -czvf binaries.tar.gz ./bin
 
       - name: Checkout Repo B
@@ -39,7 +40,7 @@ jobs:
         run: |
           # 确保 Repo B 中存在 binaries 目录
           mkdir -p binaries
-          mv binaries.tar.gz binaries/
+          mv ./bin/binaries.tar.gz binaries/
 
           # 配置 git 用户信息
           git config user.name "github-actions"
