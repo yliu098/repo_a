@@ -1,0 +1,41 @@
+name: Build and Push Binaries
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Source Code
+        uses: actions/checkout@v3
+
+      - name: Set up Build Environment
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y build-essential cmake
+
+      - name: Build Binaries
+        run: |
+          ./build.sh
+
+      - name: Package Binaries
+        run: |
+          tar -czvf binaries.tar.gz ./bin
+
+      - name: Push to Repo B
+        uses: actions/checkout@v3
+        with:
+          repository: yliu098/repo_b
+          token: repo_b_secret
+      
+      - name: Upload Binaries to Repo B
+        run: |
+          mkdir -p binaries
+          mv binaries.tar.gz binaries/
+          git add binaries/
+          git commit -m "Add new binaries from Repo A"
+          git push
