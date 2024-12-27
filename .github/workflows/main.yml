@@ -38,6 +38,12 @@ jobs:
           git remote set-url origin https://yliu098:${{ secrets.test_token }}@github.com/yliu098/repo_b.git
           git remote -v
 
+      - name: Checkout Repo B
+        uses: actions/checkout@v3
+        with:
+          repository: yliu098/repo_b
+          token: ${{ secrets.test_token }}
+
       - name: Upload Binaries to Repo B
         run: |
           # 在 Repo B 中创建 'binaries' 目录并移动文件
@@ -49,7 +55,8 @@ jobs:
           git config user.email "github-actions@github.com"
 
           git remote set-url origin https://yliu098:${{ secrets.test_token }}@github.com/yliu098/repo_b.git
-
+          git remote -v
+          
           # 添加并提交变更
           git add binaries/
           git commit -m "Add new binaries from Repo A"
