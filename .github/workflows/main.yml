@@ -27,8 +27,8 @@ jobs:
       - name: Package Binaries
         run: |
           ls ./
-          ls ./bin/
           tar -czvf binaries.tar.gz ./bin
+          ls ./bin/
 
       - name: Checkout Repo B
         uses: actions/checkout@v3
