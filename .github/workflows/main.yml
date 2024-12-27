@@ -31,16 +31,11 @@ jobs:
 
       - name: Clone Repo B
         run: |
-          cd ..
-          # 克隆 Repo B 代码库
-          git remote set-url origin https://yliu098:${{ secrets.test_token }}@github.com/yliu098/repo_b.git
+          # 使用 token 克隆 Repo B
+          git clone https://github.com/yliu098/repo_b.git
           cd repo_b
-
-      - name: Checkout Repo B (with token)
-        uses: actions/checkout@v3
-        with:
-          repository: yliu098/repo_b  # Repo B 的仓库名称
-          token: ${{ secrets.test_token }}  # 使用存储在 Secrets 中的 token
+          # 使用 token 设置认证 URL 来支持私有仓库
+          git remote set-url origin https://yliu098:${{ secrets.test_token }}@github.com/yliu098/repo_b.git
 
       - name: Upload Binaries to Repo B
         run: |
