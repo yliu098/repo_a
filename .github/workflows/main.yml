@@ -28,16 +28,6 @@ jobs:
         run: |
             tar -czvf ../binaries.tar.gz -C ./bin .
 
-      - name: Clone Repo B
-        run: |
-          # 使用 token 克隆 Repo B
-          cd ..
-          git clone https://github.com/yliu098/repo_b.git
-          cd repo_b
-          # 使用 token 设置认证 URL 来支持私有仓库
-          git remote set-url origin https://yliu098:${{ secrets.test_token }}@github.com/yliu098/repo_b.git
-          git remote -v
-
       - name: Checkout Repo B
         uses: actions/checkout@v3
         with:
@@ -46,23 +36,12 @@ jobs:
 
       - name: Upload Binaries to Repo B
         run: |
-          # 在 Repo B 中创建 'binaries' 目录并移动文件
-          ls ./
-          echo -----------
-          ls ../
-          echo -----------
-          ls ../repo_a
-          echo -----------
           mkdir -p binaries
-          ls ../repo_b
           mv ../binaries.tar.gz binaries/  # 将 Repo A 生成的二进制文件移动到 Repo B
 
           # 配置 Git 用户信息
           git config user.name "github-actions"
           git config user.email "github-actions@github.com"
-
-          git remote set-url origin https://yliu098:${{ secrets.test_token }}@github.com/yliu098/repo_b.git
-          git remote -v
           
           # 添加并提交变更
           git add binaries/
