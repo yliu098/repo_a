@@ -3,4 +3,4 @@ project(TestBinary)
 
 set(CMAKE_CXX_STANDARD 17)
 
-add_executable(test_binary main.cpp)
+add_executable(test_binary src/main.cpp)
