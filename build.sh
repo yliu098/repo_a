@@ -14,7 +14,7 @@ echo "Building project..."
 cmake --build .
 
 # 将生成的二进制文件移动到 bin 目录
-mkdir -p ./bin
-cp test_binary ./bin/
+mkdir -p ../bin
+cp test_binary ../bin/
 
-echo "Build completed. Binary is located in ./bin/test_binary"
+echo "Build completed. Binary is located in ../bin/test_binary"
