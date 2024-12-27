@@ -20,7 +20,8 @@ jobs:
 
       - name: Build Binaries
         run: |
-          ./build.sh
+           chmod +x build.sh
+           ./build.sh
 
       - name: Package Binaries
         run: |
