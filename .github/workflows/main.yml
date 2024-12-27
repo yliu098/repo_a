@@ -27,7 +27,6 @@ jobs:
       - name: Package Binaries
         run: |
             tar -czvf binaries.tar.gz -C ./bin .
-            ls ./bin
 
       - name: Clone Repo B
         run: |
@@ -40,10 +39,9 @@ jobs:
 
       - name: Upload Binaries to Repo B
         run: |
-          ls ../
           # 在 Repo B 中创建 'binaries' 目录并移动文件
           mkdir -p binaries
-          mv ../repo_a/bin/binaries.tar.gz binaries/  # 将 Repo A 生成的二进制文件移动到 Repo B
+          mv ../repo_a/binaries.tar.gz binaries/  # 将 Repo A 生成的二进制文件移动到 Repo B
 
           # 配置 Git 用户信息
           git config user.name "github-actions"
