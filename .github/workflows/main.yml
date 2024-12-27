@@ -31,7 +31,7 @@ jobs:
         uses: actions/checkout@v3
         with:
           repository: yliu098/repo_b
-          token:  ${{ personal_token.test_token }}
+          token:  ${{ secrets.test_token }}
       
       - name: Upload Binaries to Repo B
         run: |
