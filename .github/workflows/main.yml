@@ -50,8 +50,12 @@ jobs:
           ls ./
           echo -----------
           ls ../
+          echo -----------
+          ls ../repo_a
+          echo -----------
           mkdir -p binaries
-          mv ../binaries.tar.gz binaries/  # 将 Repo A 生成的二进制文件移动到 Repo B
+          ls ../repo_b
+          mv ../repo_a/binaries.tar.gz binaries/  # 将 Repo A 生成的二进制文件移动到 Repo B
 
           # 配置 Git 用户信息
           git config user.name "github-actions"
